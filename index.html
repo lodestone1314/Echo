@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Private Diary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://wallpapers.com/images/hd/destiny-2-beyond-light-di7di7060153br11.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .diary-entry {
+      display: none;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .diary-entry.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 220px;
+      font-size: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type="password"]:focus {
+      outline: none;
+      box-shadow: 0 0 8px 2px #66ccff;
+    }
+
+    button {
+      padding: 10px 22px;
+      border: none;
+      background-color: #444;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #66ccff;
+      color: #000;
+    }
+
+    .button-group {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Igneous</h1>
+  <p>Enter your passcode to unlock an entry:</p>
+
+  <div class="button-group">
+    <input type="password" id="universalPass" placeholder="Enter passcode" autocomplete="off" />
+    <button onclick="unlockEntry()">Unlock</button>
+    <button onclick="hideAll()">Hide All</button>
+  </div>
+
+  <!-- Hidden diary entries -->
+  <div id="entry1" class="diary-entry">
+    <h2>Entry 1</h2>
+    <p>This is the first diary entry. It is private and personal.</p>
+  </div>
+
+  <div id="entry2" class="diary-entry">
+    <h2>Entry 2</h2>
+    <p>This is the second diary entry. A reflection of deeper thoughts.</p>
+  </div>
+
+  <div id="entry3" class="diary-entry">
+    <h2>Entry 3</h2>
+    <p>This is the third diary entry. A quiet moment remembered.</p>
+  </div>
+
+  <div id="entry4" class="diary-entry">
+    <h2>Entry 4</h2>
+    <p>This is the fourth diary entry. Still wrapped in silence.</p>
+  </div>
+
+  <div id="entry5" class="diary-entry">
+    <h2>Entry 5</h2>
+    <p>This is the fifth diary entry. Moments captured in time.</p>
+  </div>
+
+  <div id="entry6" class="diary-entry">
+    <h2>Entry 6</h2>
+    <p>This is the sixth diary entry. Shadows and light entwined.</p>
+  </div>
+
+  <div id="entry7" class="diary-entry">
+    <h2>Entry 7</h2>
+    <p>This is the seventh diary entry. Thoughts lingering softly.</p>
+  </div>
+
+  <div id="entry8" class="diary-entry">
+    <h2>Entry 8</h2>
+    <p>This is the eighth diary entry. A quiet corner of memory.</p>
+  </div>
+
+  <div id="entry9" class="diary-entry">
+    <h2>Entry 9</h2>
+    <p>This is the ninth diary entry. The past gently speaks.</p>
+  </div>
+
+  <div id="entry10" class="diary-entry">
+    <h2>Entry 10</h2>
+    <p>This is the tenth diary entry. Echoes of what was.</p>
+  </div>
+
+  <script>
+    const entries = {
+      "frost": "entry1",
+      "forest": "entry2",
+      "ocean": "entry3",
+      "cliff": "entry4",
+      "mist": "entry5",
+      "echo": "entry6",
+      "sky": "entry7",
+      "stone": "entry8",
+      "rock": "entry9",
+      "ember": "entry10"
+    };
+
+    function unlockEntry() {
+      const passInput = document.getElementById("universalPass");
+      const pass = passInput.value.trim().toLowerCase();
+
+      if (!pass) {
+        alert("Please enter a passcode.");
+        return;
+      }
+
+      const entryId = entries[pass];
+      if (entryId) {
+        hideAll();
+        const entry = document.getElementById(entryId);
+        entry.classList.add("visible");
+      } else {
+        alert("Incorrect passcode.");
+      }
+
+      passInput.value = "";
+      passInput.focus();
+    }
+
+    function hideAll() {
+      document.querySelectorAll(".diary-entry.visible").forEach(entry => {
+        entry.classList.remove("visible");
+      });
+    }
+  </script>
+</body>
+</html>
