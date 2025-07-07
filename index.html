@@ -74,6 +74,12 @@
   <h1>Igneous</h1>
   <p>Enter your passcode to unlock an entry:</p>
 
+  <form class="button-group" onsubmit="unlockEntry(); return false;">
+    <input type="password" id="universalPass" placeholder="Enter passcode" autocomplete="off" />
+    <button type="submit">Unlock</button>
+    <button type="button" onclick="hideAll()">Hide All</button>
+  </form>
+
   <div class="button-group">
     <input type="password" id="universalPass" placeholder="Enter passcode" autocomplete="off" />
     <button onclick="unlockEntry()">Unlock</button>
