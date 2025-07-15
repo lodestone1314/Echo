@@ -55,7 +55,6 @@
       color: white;
       border-radius: 5px;
       cursor: pointer;
-      margin-left: 10px;
       font-size: 1rem;
       transition: background-color 0.3s ease;
     }
@@ -83,13 +82,21 @@
   <h1>Igneous</h1>
   <p>Enter your passcode to unlock an entry:</p>
 
+  <!-- Form with password field + buttons -->
   <form class="button-group" onsubmit="unlockEntry(); return false;">
-    <input type="password" id="universalPass" placeholder="Enter passcode" autocomplete="off" />
-    <button type="submit">Unlock</button>
-    <button type="button" onclick="hideAll()">Hide All</button>
+    <input
+      type="password"
+      id="universalPass"
+      placeholder="Enter passcode"
+      autocomplete="off"
+    />
+    <div class="button-row">
+      <button type="submit">Unlock</button>
+      <button type="button" onclick="hideAll()">Hide All</button>
+    </div>
   </form>
 
-  <!-- Hidden diary entries -->
+  <!-- Diary entries (just plain text for now) -->
   <div id="entry1" class="diary-entry">
     <h2>Entry 1</h2>
     <p>This is the first diary entry. It is private and personal.</p>
@@ -164,13 +171,14 @@
       }
 
       const entryId = entries[pass];
-      if (entryId) {
-        hideAll();
-        const entry = document.getElementById(entryId);
-        entry.classList.add("visible");
-      } else {
+      if (!entryId) {
         alert("Incorrect passcode.");
+        return;
       }
+
+      hideAll();
+      const entry = document.getElementById(entryId);
+      entry.classList.add("visible");
 
       passInput.value = "";
       passInput.focus();
